@@ -2,56 +2,21 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {
-  text-align: center;
-}
-
 h1 {
   margin-bottom: 20px;
 }
 
 .search-bar {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .search-bar input {
   padding: 5px;
   margin-right: 10px;
+  width: 70%; /* Extender el input al 70% del contenedor */
+  border-radius: 5px; /* Añadir bordes redondeados */
 }
 
 .search-bar button {
@@ -60,6 +25,7 @@ h1 {
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 5px; /* Añadir bordes redondeados */
 }
 
 .recipe-container {
@@ -71,6 +37,7 @@ h1 {
 .recipe-item {
   border: 1px solid #ccc;
   padding: 10px;
+  border-radius: 10px; /* Añadir bordes redondeados */
 }
 
 .recipe-image-placeholder {
@@ -85,4 +52,12 @@ h1 {
 
 .recipe-item button {
   margin-top: 10px;
+  background-color: #007bff; /* Cambiar color del botón a azul */
+  color: #fff; /* Cambiar color del texto a blanco */
+}
+
+.recipe-title {
+  font-size: 1.2em; 
+  font-weight: bold; 
+  margin-bottom: 5px;
 }

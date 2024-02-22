@@ -16,60 +16,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
+      <h1>Recetas de cocina</h1>
+      <div className="search-bar">
+        <input type="text" placeholder="Nombre de la receta" />
+        <button>Buscar</button>
+      </div>
+      <div className="recipe-container">
+        {[...Array(8)].map((_, index) => (
+          <div key={index} className="recipe-item">
+            <div className="recipe-image-placeholder"></div>
+            <p className="recipe-text-placeholder">Descripción de la receta</p>
+            <button>Ver</button>
           </div>
-          <div>
-            <label htmlFor="apellidos">Apellidos:</label>
-            <input
-              type="text"
-              id="apellidos"
-              value={apellidos}
-              onChange={(e) => setApellidos(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="correo">Correo:</label>
-            <input
-              type="email"
-              id="correo"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="contraseña">Contraseña:</label>
-            <input
-              type="password"
-              id="contraseña"
-              value={contraseña}
-              onChange={(e) => setContraseña(e.target.value)}
-            />
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="aceptoTerminos"
-              checked={aceptoTerminos}
-              onChange={(e) => setAceptoTerminos(e.target.checked)}
-            />
-            <label htmlFor="aceptoTerminos">Acepto términos y condiciones</label>
-          </div>
-          <div>
-            <button type="submit">Iniciar sesión</button>
-            <button type="button">Cancelar</button>
-          </div>
-        </form>
-      </header>
+        ))}
+      </div>
     </div>
   );
 }
