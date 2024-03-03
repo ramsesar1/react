@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import defaultImage from "../default.png";
 
-function RecipeCard({title, brief, spriteURL}) {
+function RecipeCard({title, brief, spriteURL, types}) {
 
   return (
     <Card style={{ width: "18rem" }}>
@@ -11,9 +11,11 @@ function RecipeCard({title, brief, spriteURL}) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
-          {brief}
+          <strong>Tipos:</strong>{" "}
+          {types && types.map((type, index) => (
+            <span key = {index}>{type}{index !== types.length - 1 ? ', ' : ''}</span>
+          ))}
         </Card.Text>
-    
       </Card.Body>
     </Card>
   );

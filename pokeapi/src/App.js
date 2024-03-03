@@ -22,6 +22,8 @@ function App() {
 
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
 
+  // nombre y sprite list
+  // por sacar: numero, tipo, 
 
 
   useEffect(() => {
@@ -40,10 +42,11 @@ function App() {
         .then((response) => response.json())
         .then((data) => {
           const spriteURL = data.sprites.front_default;
+          const types = data.types.map((typeData) => typeData.type.name);
           setPokemonList((prevPokemonList) =>
             prevPokemonList.map((prevPokemon) =>
               prevPokemon.url === pokemon.url
-                ? { ...prevPokemon, spriteURL: spriteURL }
+                ? { ...prevPokemon, spriteURL: spriteURL, types: types }
                 : prevPokemon
             )
           );
