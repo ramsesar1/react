@@ -25,7 +25,7 @@ function App() {
   // nombre y sprite list
   // por sacar: numero, tipo, 
 
-
+//fetch para tomar la lista de pokemons
   useEffect(() => {
     fetch(URL)
       .then((response) => response.json())
@@ -36,6 +36,8 @@ function App() {
   }, []);
 
 
+
+  //fetch para obtener el sprite y tipo de pokemon
   useEffect(() => {
     pokemonList.forEach((pokemon) => {
       fetch(pokemon.url)
@@ -61,7 +63,10 @@ function App() {
         <Row>
           {pokemonList.map((pokemon, index) => (
             <Col key={index} xs={12} sm={6} md={4} lg={3}>
-              <RecipeCard title={pokemon.name} spriteURL={pokemon.spriteURL} />
+              <RecipeCard title={pokemon.name}
+               spriteURL={pokemon.spriteURL}
+               types={pokemon.types}
+               />
             </Col>
           ))}
         </Row>
