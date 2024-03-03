@@ -37,7 +37,7 @@ function App() {
 
 
 
-  //fetch para obtener el sprite y tipo de pokemon
+  //fetch para obtener el n umero, sprite y tipo de pokemon
   useEffect(() => {
     pokemonList.forEach((pokemon) => {
       fetch(pokemon.url)
@@ -60,6 +60,8 @@ function App() {
         });
     });
   }, [pokemonList]);
+
+  //extrae el numero de la url del pokemon
 
   const extraePokemonNumber = (data) => {
     const urlPartes = data.species.url.split("/");
