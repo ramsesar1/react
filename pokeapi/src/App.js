@@ -18,7 +18,7 @@ import Buscador from "./Components/Buscador.js";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
 
-  const [nombre, setNombre] = useState("Nombre");
+  const [nombre, setNombre] = useState([]);
 
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
 
@@ -31,6 +31,8 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setPokemonList(data.results);
+        const nombresPokemon = data.results.map((pokemon) => pokemon.name);
+        setNombre(nombresPokemon);
           console.log(data);
       });
   }, []);
@@ -77,7 +79,7 @@ function App() {
           {pokemonList.map((pokemon, index) => (
             <Col key={index} xs={12} sm={6} md={4} lg={3}>
               <RecipeCard 
-               title={pokemon.name}
+               title={nombre[index]}
                spriteURL={pokemon.spriteURL}
                types={pokemon.types}
                numero={pokemon.numero}
