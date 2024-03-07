@@ -1,18 +1,30 @@
-import { Row, InputGroup,Form, Button } from "react-bootstrap";
-function Buscador({texto}) {
+import React, { useState } from "react";
+import { Form, Button, FormControl } from "react-bootstrap";
+
+function Buscador({ onSearchChange }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputCambio = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearch = () => {
+    onSearchChange(searchTerm);
+  };
+
   return (
-    <Row>
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="Nombre de la receta"
-          aria-label=""
-          aria-describedby="basic-addon2"
-        />
-        <Button variant="outline-secondary" id="button-addon2">
-          {texto}
-        </Button>
-      </InputGroup>
-    </Row>
+    <Form inline>
+      <FormControl
+        type="text"
+        placeholder="Buscar Pokémon"
+        className="mr-sm-2"
+        value={searchTerm}
+        onChange={handleInputCambio}
+      />
+      <Button variant="outline-success" onClick={handleSearch}>
+        Buscar
+      </Button>
+    </Form>
   );
 }
 

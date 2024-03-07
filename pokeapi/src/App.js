@@ -20,6 +20,8 @@ function App() {
 
   const [nombre, setNombre] = useState([]);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0";
 
   // nombre y sprite list
@@ -40,6 +42,32 @@ function App() {
 
 
   //fetch para obtener el n umero, sprite y tipo de pokemon
+
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      const updatedPokemonList = await Promise.all(
+        pokemonList.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          const data = await response.json();
+          const spriteURL = data.sprites.front_default;
+          const types = data.types.map((typeData) => typeData.type.name);
+          const pokemonNumber = extraePokemonNumber(data);
+          return {
+            ...pokemon,
+            spriteURL: spriteURL,
+            types: types,
+            numero: pokemonNumber,
+          };
+        })
+      );
+      setPokemonList(updatedPokemonList);
+    };
+
+    fetchPokemonData();
+  }, [pokemonList]);
+
+  
+  /*
   useEffect(() => {
     pokemonList.forEach((pokemon) => {
       fetch(pokemon.url)
@@ -62,6 +90,13 @@ function App() {
         });
     });
   }, [pokemonList]);
+*/
+
+
+
+
+
+
 
   //extrae el numero de la url del pokemon
 
@@ -71,6 +106,51 @@ function App() {
   }
 
 
+
+const handleSearchChange = (searchTerm) => {
+  setSearchTerm(searchTerm);
+}  
+
+const handleSearch = () => {
+  handleSearchChange(searchTerm);
+}
+
+const filteredPokemon = pokemonList.filter((pokemon) =>
+   pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+return (
+<div classname="App">
+  <Encabezado/>
+  <Container>
+    <Row>
+      <Col xs={12}>
+        {/* pasa la funcion handleSearchChange en lugar de la funcion de onSearchChange */ }
+          <Buscador onSearchChange={handleSearchChange} onSearch={handleSearch} /> 
+          </Col>
+        </Row>
+        <Row>
+          {filteredPokemon.map((pokemon, index) => (
+            <Col key ={index} xs={12} sm={6} md={4} lg={3}>
+              <RecipeCard
+              title={pokemon.name}
+              spriteURL={pokemon.spriteURL}
+              types={pokemon.types}
+              numero={pokemon.numero}
+              />
+              </Col>
+          ))}
+          </Row>
+   </Container>
+</div>
+);
+
+
+
+
+
+
+/*
 
   return (
     <div className="App">
@@ -90,6 +170,8 @@ function App() {
       </Container>
     </div>
   );
+
+  */
 }
 
 export default App;
