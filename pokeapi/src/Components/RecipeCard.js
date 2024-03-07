@@ -20,6 +20,7 @@ function RecipeCard({title, brief, spriteURL, types, numero}) {
             <span key = {index}>{type}{index !== types.length - 1 ? ', ' : ''}</span>
           ))}
         </Card.Text>
+        <Button variant="primary">Ver información</Button>
       </Card.Body>
     </Card>
   );
