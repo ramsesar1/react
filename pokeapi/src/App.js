@@ -67,37 +67,6 @@ function App() {
   }, [pokemonList]);
 
   
-  /*
-  useEffect(() => {
-    pokemonList.forEach((pokemon) => {
-      fetch(pokemon.url)
-        .then((response) => response.json())
-        .then((data) => {
-          const spriteURL = data.sprites.front_default;
-          const types = data.types.map((typeData) => typeData.type.name);
-          const pokemonNumber = extraePokemonNumber(data);
-          setPokemonList((prevPokemonList) =>
-            prevPokemonList.map((prevPokemon) =>
-              prevPokemon.url === pokemon.url
-                ? { ...prevPokemon, 
-                  spriteURL: spriteURL, 
-                  types: types,
-                  numero: pokemonNumber,
-                }
-                : prevPokemon
-            )
-          );
-        });
-    });
-  }, [pokemonList]);
-*/
-
-
-
-
-
-
-
   //extrae el numero de la url del pokemon
 
   const extraePokemonNumber = (data) => {
@@ -137,6 +106,8 @@ return (
               spriteURL={pokemon.spriteURL}
               types={pokemon.types}
               numero={pokemon.numero}
+              pokemonUrl={pokemon.url} // Agrega esta línea para pasar la URL del Pokémon
+
               />
               </Col>
           ))}
@@ -146,32 +117,5 @@ return (
 );
 
 
-
-
-
-
-/*
-
-  return (
-    <div className="App">
-      <Container>
-        <Row>
-          {pokemonList.map((pokemon, index) => (
-            <Col key={index} xs={12} sm={6} md={4} lg={3}>
-              <RecipeCard 
-               title={nombre[index]}
-               spriteURL={pokemon.spriteURL}
-               types={pokemon.types}
-               numero={pokemon.numero}
-               />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
-  );
-
-  */
 }
-
 export default App;
